@@ -1,0 +1,26 @@
+.wrapper {
+  padding: 5px;
+  font-family: 'PT Sans';
+  font-weight: 400;
+  font-size: 15px;
+}
+
+.tilewrapper {
+  padding: 5px;
+  display: grid;
+  grid-template-columns: repeat(2, 200px);
+  grid-gap: 5px
+}
+
+.item {
+  border: 2px solid #E0E0E0;
+  border-radius: 5px;
+  justify-content: center;
+  padding: 5px;
+  margin: 3px;
+  font-size: 15px;
+}
+
+.item:hover {
+  background-color: #FFEFD5;
+}
