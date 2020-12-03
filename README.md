@@ -17,5 +17,5 @@ Action | Method | URL
 -------|--------|-----
 Get products | GET | /api/products/:id
 Edit product | PUT | /api/products/edit/:id
-Delete a review | DELETE | /api/products/delete/:id
+Delete a product | DELETE | /api/products/delete/:id
 Add product | POST | /api/products/add/:id
