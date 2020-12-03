@@ -21,3 +21,4 @@ CREATE TABLE products (
 
   PRIMARY KEY (ID)
 );
+

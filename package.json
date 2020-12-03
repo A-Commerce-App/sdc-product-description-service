@@ -17,7 +17,7 @@
   "scripts": {
     "start": "node server/app.js",
     "build": "webpack -d --watch",
-    "seed": "node server/seeds.js",
+    "mongo-seed": "node database/mongo-seed.js",
     "test": "jest",
     "production": "webpack --config webpack.config.js && node server/app.js"
   },
