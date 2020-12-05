@@ -1,6 +1,6 @@
 const faker = require('faker');
 const mongoose = require('mongoose');
-const {Product} = require('../database/mongo.js');
+const {Product} = require('../database/mongo/mongo.js');
 
 mongoose.connect('mongodb://localhost/products', {useNewUrlParser: true});
 const db = mongoose.connection;

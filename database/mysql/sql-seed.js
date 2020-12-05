@@ -1,7 +1,6 @@
 const faker = require('faker');
-const mongoose = require('mongoose');
-const {Product} = require('../server/database');
-//const db = require('../server/database');
+const db = require('mysql');
+const {Product} = require('../database/sql/sql.js');
 
 mongoose.connect('mongodb://localhost/products', {useNewUrlParser: true});
 const db = mongoose.connection;
@@ -39,4 +38,4 @@ const makeProducts = () => {
 };
 makeProducts();
 
-exports.makeProducts = makeProducts;
+module.exports.makeProducts = makeProducts;
