@@ -2,14 +2,17 @@ const express = require('express');
 const app = express();
 const port = 3002;
 
-const Product = require('../database/mongo/mongo.js').Product;
+const db = require('../database/mysql/sql.js');
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use('/', express.static('public'));
 
 app.get('/api/products/:id', (req, res) => {
-  Product.findById(req.params.id, (err, product) => {
+  const id = [req.params.id];
+  const sql = "SELECT * FROM products WHERE id= ?"
+
+  db.con.query(sql, id, (err, product) => {
     if (err) {
       console.log('Error: ', err);
       res.send(404);
@@ -20,33 +23,44 @@ app.get('/api/products/:id', (req, res) => {
 });
 
 app.put('/api/products/edit/:id', (req, res) => {
-  Product.updateOne({_id: req.params.id}, {about: req.body.about})
-  .then(result => res.status(200).send(result))
-  .catch(err => {
-    console.log(err);
-    res.status(400).send(err);
-  })
+  const { _id, about } = req.body;
+  const params = [_id, about];
+  const sql = 'UPDATE products SET about = ? WHERE id = ?';
+
+  db.con.query(sql, params, (err, results) => {
+    if (err) { return res.sendStatus(500); }
+    return res.status(200).send(results);
+  });
 })
 
 app.post('/api/products/delete/:id', (req, res) => {
-  Product.remove({_id: req.params.id})
-  .then(result => res.status(200).send(result))
-  .catch(err => {
-    console.log(err);
-    res.status(400).send(err);
-  })
+  const id = req.params.id;
+  const queryString = 'DELETE FROM products WHERE id = ?';
+
+  db.con.query(queryString, [id], (err, results) => {
+    if (err) { return res.sendStatus(500); }
+    return res.status(200).send(results);
+  });
 })
 
 app.post('/api/products/add/:id', (req, res) => {
-  const added = new Product(req.body)
-  added.save((err, product) => {
+  const {name, price, prime, returnable, ingredients, flavor, sensitivity, brand, ingredient_info, about, ratings_avg } = req.body;
+
+  const params = [
+    name, price, prime, returnable, ingredients, flavor, sensitivity, brand, ingredient_info, about, ratings_avg
+  ];
+  const sql = `
+    INSERT INTO products(name, price, prime, returnable, ingredients, flavor, sensitivity, brand, ingredient_info, about, ratings_avg)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+    `;
+
+  db.con.query(sql, params, (err, results) => {
     if (err) {
-      console.log('Error: ', err);
-      res.send(404);
-    } else {
-      res.send(product);
+      console.log(err);
+      return res.sendStatus(500);
     }
-  })
+    return res.status(200).send(results);
+  });
 })
 
 

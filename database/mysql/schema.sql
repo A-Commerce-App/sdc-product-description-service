@@ -1,24 +1,21 @@
-DROP DATABASE IF EXISTS product-descriptions;
+DROP DATABASE IF EXISTS productDescriptions;
 
-CREATE DATABASE product-descriptions;
+CREATE DATABASE productDescriptions;
 
-USE product-descriptions;
+USE productDescriptions;
 
 CREATE TABLE products (
-  id int NOT NULL AUTO_INCREMENT,
-  name date,
+  id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  name varchar(50),
   price decimal(10, 2) NOT NULL,
-  description varchar(255) NOT NULL,
+  description varchar(255),
   prime boolean NOT NULL,
   returnable boolean NOT NULL,
-  flavor boolean,
+  flavor varchar(50),
   ingredients varchar(255),
   brand varchar(50) NOT NULL,
-  sensitivity boolean,
+  sensitivity varchar(255),
   ingredient_info varchar(255),
   about varchar(255),
   ratings_avg int
-
-  PRIMARY KEY (ID)
 );
-

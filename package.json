@@ -17,7 +17,9 @@
   "scripts": {
     "start": "node server/app.js",
     "build": "webpack -d --watch",
-    "mongo-seed": "node database/mongo-seed.js",
+    "mongo-seed": "node database/mongo/mongo-seed.js",
+    "data-gen": "node --max-old-space-size=8192 database/dataGen.js",
+    "sql-load": "node --max-old-space-size=8192 database/mysql/sql-loader.js",
     "test": "jest",
     "production": "webpack --config webpack.config.js && node server/app.js"
   },
