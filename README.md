@@ -1,7 +1,5 @@
 # sdc-product-description-service
 
-# Amazon Reviews
-
 ## Table of Contents
 
 1. [Databases](#Databases)
