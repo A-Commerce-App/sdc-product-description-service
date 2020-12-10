@@ -22,7 +22,7 @@ class MainTile extends React.Component {
       <div className={styles.item} onClick={this.selected}>
         <h3>{product.name}</h3>
         <p style={{ color: 'red' }}>${Number(product.price).toFixed(2)}</p>
-        <h4>{product.prime ? <img alt="prime" src={`https://fec-pics.s3.us-east-2.amazonaws.com/primeLogo_621x260.png`} style={{ height: '25px', width: '57px'}}/> : 'Not Prime'}</h4>
+        <h4>{product.prime === 'true' ? <img alt="prime" src={`https://fec-pics.s3.us-east-2.amazonaws.com/primeLogo_621x260.png`} style={{ height: '25px', width: '57px'}}/> : 'Not Prime'}</h4>
       </div>
     )
   }

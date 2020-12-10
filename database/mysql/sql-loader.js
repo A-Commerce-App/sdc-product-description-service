@@ -17,6 +17,7 @@ const saveAll = (records) => {
     if (err) throw err;
     console.log("Result: " + result);
   });
+  db.con.end();
 }
 
 console.log('Insertion started ', now.toUTCString());

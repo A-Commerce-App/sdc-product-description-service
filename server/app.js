@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const port = 3002;
+const newRelic = require('newrelic');
 
 const db = require('../database/mysql/sql.js');
 
@@ -10,7 +11,7 @@ app.use('/', express.static('public'));
 
 app.get('/api/products/:id', (req, res) => {
   const id = [req.params.id];
-  const sql = "SELECT * FROM products WHERE id= ?"
+  const sql = "SELECT * FROM products WHERE id=?"
 
   db.con.query(sql, id, (err, product) => {
     if (err) {

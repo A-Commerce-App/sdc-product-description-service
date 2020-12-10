@@ -1,6 +1,6 @@
 const fs = require('fs');
 const faker = require('faker');
-const csvPath = `${__dirname}/mysql/data/products.csv`;
+const csvPath = `${__dirname}/data/products.csv`;
 const now = new Date();
 
 const randomBool = () => {
@@ -9,7 +9,7 @@ const randomBool = () => {
 }
 
 const randomRating = () => {
-  return Math.random() * (5 - 1) + 1;
+  return Math.floor(Math.random() * (5 - 1) + 1);
 }
 
 const makeProducts = () => {
@@ -17,6 +17,7 @@ const makeProducts = () => {
   let products = [];
   for (var i = 0; i < 10000000; i++) {
     var product = {};
+    product.id = i;
     product.name = faker.commerce.product();
     product.price = Number.parseInt(faker.commerce.price());
     product.prime = randomBool();
@@ -38,13 +39,13 @@ console.log('records generated for products: ', products.length);
 
 const writeProductHeader = () => {
   const productStream = fs.createWriteStream(csvPath);
-  productStream.write('name,price,prime,returnable,ingredients,flavor,sensitivity,brand,ingredient_info,about,ratings_avg\n');
+  productStream.write('id#name#price#prime#returnable#ingredients#flavor#sensitivity#brand#ingredient_info#about#ratings_avg\n');
 };
 
 const writeProducts = () => {
   const productStream = fs.createWriteStream(csvPath, {flags: 'a'});
   for (let product of products) {
-    productStream.write(`${product.name},${product.price},${product.prime},${product.returnable},${product.ingredients},${product.flavor},${product.sensitivity}, ${product.brand},${product.ingredient_info},${product.about},${product.ratings_avg}\n`);
+    productStream.write(`${product.id}#${product.name}#${product.price}#${product.prime}#${product.returnable}#${product.ingredients}#${product.flavor}#${product.sensitivity}#${product.brand}#${product.ingredient_info}#${product.about}#${product.ratings_avg}\n`);
   }
 }
 
@@ -58,3 +59,8 @@ console.log('File complete!', now.toUTCString());
 
 
 module.exports = makeProductCSV;
+
+
+
+
+
