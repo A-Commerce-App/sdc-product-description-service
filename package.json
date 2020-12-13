@@ -23,7 +23,8 @@
     "cass-data-gen": "node --max-old-space-size=8192 database/cassandra/cassandraDataGen.js",
     "sql-load": "node --max-old-space-size=8192 database/mysql/sql-loader.js",
     "test": "jest",
-    "production": "webpack --config webpack.config.js && node server/app.js"
+    "production": "webpack --config webpack.config.js && node server/app.js",
+    "stress-test": "artillery run server/stress-test.json"
   },
   "repository": {
     "type": "git",
@@ -50,6 +51,7 @@
     "webpack-cli": "^4.2.0"
   },
   "devDependencies": {
+    "artillery": "^1.6.1",
     "css-loader": "^5.0.1",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.5",

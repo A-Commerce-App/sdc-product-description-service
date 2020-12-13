@@ -16,9 +16,9 @@ app.get('/api/products/:id', (req, res) => {
   db.con.query(sql, id, (err, product) => {
     if (err) {
       console.log('Error: ', err);
-      res.send(404);
+      return res.status(500).send(err);
     } else {
-      res.send(product);
+      return res.status(200).send(product)
     }
   })
 });
@@ -29,7 +29,9 @@ app.put('/api/products/edit/:id', (req, res) => {
   const sql = 'UPDATE products SET about = ? WHERE id = ?';
 
   db.con.query(sql, params, (err, results) => {
-    if (err) { return res.sendStatus(500); }
+    if (err) {
+      return res.status(500).send(err);
+    }
     return res.status(200).send(results);
   });
 })
@@ -39,12 +41,14 @@ app.post('/api/products/delete/:id', (req, res) => {
   const queryString = 'DELETE FROM products WHERE id = ?';
 
   db.con.query(queryString, [id], (err, results) => {
-    if (err) { return res.sendStatus(500); }
+    if (err) {
+      return res.status(500).send(err);
+    }
     return res.status(200).send(results);
   });
 })
 
-app.post('/api/products/add/:id', (req, res) => {
+app.post('/api/products/add/', (req, res) => {
   const {name, price, prime, returnable, ingredients, flavor, sensitivity, brand, ingredient_info, about, ratings_avg } = req.body;
 
   const params = [
@@ -58,7 +62,7 @@ app.post('/api/products/add/:id', (req, res) => {
   db.con.query(sql, params, (err, results) => {
     if (err) {
       console.log(err);
-      return res.sendStatus(500);
+      return res.status(500).send(err);
     }
     return res.status(200).send(results);
   });
