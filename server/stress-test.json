@@ -1,0 +1,47 @@
+{
+  "config": {
+    "target": "http://localhost:3002",
+    "phases": [
+      {
+        "duration": 60,
+        "arrivalRate": 250
+      }
+    ]
+  },
+  "scenarios": [
+    {
+      "flow": [
+        {
+          "get": {
+            "url": "/api/products/{{$randomNumber(9000000,10000000)}}"
+          }
+        }
+      ],
+      "weight": 10
+    },
+    {
+      "flow" : [
+        {
+        "post": {
+          "url": "/api/products/add/",
+          "json":
+            {
+              "name": "test",
+              "price": 777,
+              "prime": "true",
+              "returnable": "true",
+              "flavor": "test",
+              "ingredients": "test",
+              "brand": "test",
+              "sensitivity": "test",
+              "ingredient_info": "test",
+              "about": "test",
+              "ratings_avg": 0
+            }
+          }
+        }
+      ],
+      "weight": 1
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+ssh -i "sdc-ec2-mysql.pem" ubuntu@ec2-18-222-211-247.us-east-2.compute.amazonaws.com

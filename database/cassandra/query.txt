@@ -1,0 +1,4 @@
+COPY products (id,name,price,prime,returnable,ingredients,flavor,sensitivity,brand,ingredient_info,about,ratings_avg) FROM '/Users/jxhn/Documents/HRR49/sdc-product-description-service/database/cassandra/data/products.csv' WITH DELIMITER='#' AND HEADER=TRUE;
+
+INSERT INTO products (id,name,price,prime,returnable,ingredients,flavor,sensitivity,brand,ingredient_info,about,ratings_avg)
+VALUES (10000000, 'test', 123, 'true', 'true', 'test', 'test', 'test', 'test', 'test', 'test', 1);

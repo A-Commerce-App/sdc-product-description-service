@@ -1,1 +1,6 @@
 node_modules
+*.csv
+newrelic.js
+newrelic_agent.log
+sdc-service.pem
+sdc-ec2-mysql.pem

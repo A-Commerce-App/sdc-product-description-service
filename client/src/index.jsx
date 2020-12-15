@@ -13,20 +13,23 @@ class App extends React.Component {
     }
   }
 
-  componentDidMount() {
-    let id = Math.floor(Math.random() * 100) + 1;
-    // let url = window.location.pathname.split('/');
-    // let id = url.join('');
-    axios.get(`/api/products/${id}`)
-      .then(res => {
-        const product = res.data;
-        this.setState({
-          product: product
-        })
+componentDidMount() {
+  const randomId = Math.floor(Math.random() * 1000000) + 9000000;
+  const url = window.location.href.split('/');
+  const end = url[url.length -1];
+  const id = (isNaN(end) || end === '') ? randomId : end;
+
+  axios.get(`/api/products/${id}`)
+    .then(res => {
+      const product = res.data[0];
+      this.setState({
+        product: product
       })
+    })
   }
 
   render() {
+    console.log(this.state.product);
     return (
       <div>
         <Product product={this.state.product} />
