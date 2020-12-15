@@ -24,6 +24,7 @@
     "service-ec2": "bash login.sh",
     "mysql-ec2": "bash login-mysql.sh",
     "sql-load": "node --max-old-space-size=8192 database/mysql/sql-loader.js",
+    "seed-mongo": "node database/mongo-seed.js",
     "test": "jest",
     "production": "webpack --config webpack.config.js && node server/app.js",
     "stress-test": "artillery run server/stress-test.json"
