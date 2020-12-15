@@ -53,6 +53,7 @@ const makeProductCSV = () => {
   writeProducts();
 }
 
+
 makeProductCSV();
 console.log('File complete!', now.toUTCString());
 

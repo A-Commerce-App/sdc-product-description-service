@@ -21,6 +21,8 @@
     "mongo-seed": "node database/mongo/mongo-seed.js",
     "data-gen": "node --max-old-space-size=8192 database/dataGen.js",
     "cass-data-gen": "node --max-old-space-size=8192 database/cassandra/cassandraDataGen.js",
+    "service-ec2": "bash login.sh",
+    "mysql-ec2": "bash login-mysql.sh",
     "sql-load": "node --max-old-space-size=8192 database/mysql/sql-loader.js",
     "test": "jest",
     "production": "webpack --config webpack.config.js && node server/app.js",
@@ -28,7 +30,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/House-Bezos/deb-service.git"
+    "url": "https://github.com/SDC-masters/sdc-product-description-service.git"
   },
   "dependencies": {
     "@babel/core": "^7.12.3",
